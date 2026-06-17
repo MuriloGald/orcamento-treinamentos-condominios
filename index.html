@@ -388,6 +388,29 @@
     box-shadow: 0 4px 16px rgba(226,35,26,0.08);
   }
 
+  .callout-card {
+    background: linear-gradient(135deg, #eef7ff, #f5fbff);
+    border: 1px solid #b9e0ff;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin: -2px 0 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .callout-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .callout-card p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: #1d5a8c;
+    font-weight: 500;
+  }
+
   .theme-head {
     display: flex;
     align-items: center;
@@ -661,7 +684,11 @@
   var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwT-8YoZfWSTbLyaBp3KluqdUrRbd--GAvihg0fxDcYxLogWGmMiKUQyctrA97dyDXbiw/exec';
 
   var TEMAS = [
-    { texto: 'Sistemas e medidas preventivas contra incêndio e pânico', icone: '🚨' },
+    {
+      texto: 'Sistemas e medidas preventivas contra incêndio e pânico (extintores, hidrantes, alarmes, iluminação de emergência, sinalização e portas corta-fogo)',
+      icone: '🚨',
+      callout: 'Você sabia que a porta corta-fogo só é um sistema preventivo se ela estiver fechada?'
+    },
     { texto: 'Doenças e casos clínicos envolvendo a terceira idade', icone: '🏥' },
     { texto: 'Uso e manuseio de extintores (Teoria)', icone: '📘' },
     { texto: 'Uso e manuseio de extintores (Prática)', icone: '🧯' },
@@ -695,6 +722,13 @@
       html += '</div>';
       html += '<div class="rating-scale-caption"><span>Pouco importante</span><span>Muito importante</span></div>';
       html += '</div>';
+
+      if (tema.callout) {
+        html += '<div class="callout-card reveal">';
+        html += '<span class="callout-icon">💡</span>';
+        html += '<p>' + tema.callout + '</p>';
+        html += '</div>';
+      }
     });
     container.innerHTML = html;
     observeReveal();
